@@ -2,18 +2,21 @@ version: 2.1
 
 jobs:
   build:
-    docker:
-      - image: cimg/python:3.10.5
-    steps:
-      - checkout
-      - run: python --version
-      - run: python3 -m venv venv
-      - run: source venv/bin/activate
-      - run: make install 
-      - run: 
-          name: Lint files 
-          command: make lint
+		docker:
+		  - image: cimg/python:3.10.5
+		steps:
+		  - checkout
+		  - run: python --version
+		  - run: python3 -m venv venv
+		  - run: source venv/bin/activate
+		  - run: make install 
+		  - run: 
+			  	name: Lint files 
+			  	command: make lint
   # Fetch and save the pipeline ID (bucket ID) responsible for the last release.
 
 workflows:
-   - build
+	python-workflows:
+		jobs: 
+			- build 
+		
